@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import User from './schemas.js'
+import { User } from './schemas.js'
 
 
 mongoose.connect('mongodb://localhost/test_app', {useNewUrlParser: true, useUnifiedTopology: true})
