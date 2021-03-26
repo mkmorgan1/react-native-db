@@ -11,10 +11,15 @@ db.once('open', () => {
 });
 
 export const user = {
-  get: (username, done) => {
+  getOne: (username, done) => {
     User.find({username: username}, (err, res) => {
       err ? done(err): done(null, res);
     });
+  },
+  getAll: (done) => {
+    User.find({}, (err,res) => {
+      err ? done(err): done(null, res);
+    })
   },
   create: (data, done) => {
     User.create(data,(err, res) => {

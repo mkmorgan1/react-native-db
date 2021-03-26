@@ -7,8 +7,16 @@ import { user } from '../database/index'
 app.use(express.urlencoded());
 app.use(express.json());
 
+app.get('/allUsers', (req, res) => {
+  user.getAll((err, response) => {
+    err ? res.status(404).send(err): res.status(200).send(response)
+  })
+})
+
 app.get('/user', (req, res) => {
-  res.send('user')
+  user.getOne(req.body.username, (err, response) => {
+    err ? res.status(404).send(err): res.status(200).send(response)
+  })
 })
 
 app.post('/user', (req, res) => {
