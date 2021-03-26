@@ -17,7 +17,11 @@ app.post('/user', (req, res) => {
   })
 })
 
-// app.put('/user')
+app.put('/user', (req, res) => {
+  user.update(req.body.id, req.body.data, (err, response) => {
+    err ? res.status(404).send(err): res.status(200).send(response)
+  })
+})
 
 app.delete('/user', (req, res) => {
   user.delete(req.body.id, (err, response) => {
