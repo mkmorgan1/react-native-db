@@ -27,7 +27,7 @@ export const user = {
     });
   },
   delete: (id, done) => {
-    User.deleteOne({_id: id}, data, (err, res) => {
+    User.deleteOne({_id: id}, (err, res) => {
       err ? done(err) : done(null, res)
     });
   },

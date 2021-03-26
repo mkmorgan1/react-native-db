@@ -11,9 +11,16 @@ app.get('/user', (req, res) => {
   res.send('user')
 })
 
-app.post('/user', (req, res)=> {
-  console.log(req.body)
+app.post('/user', (req, res) => {
   user.create(req.body, (err, response) => {
+    err ? res.status(404).send(err): res.status(200).send(response)
+  })
+})
+
+// app.put('/user')
+
+app.delete('/user', (req, res) => {
+  user.delete(req.body.id, (err, response) => {
     err ? res.status(404).send(err): res.status(200).send(response)
   })
 })
