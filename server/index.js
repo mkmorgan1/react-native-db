@@ -14,7 +14,8 @@ app.get('/allUsers', (req, res) => {
 })
 
 app.get('/user', (req, res) => {
-  user.getOne(req.body.username, (err, response) => {
+  console.log(req.query);
+  user.getOne(req.query, (err, response) => {
     err ? res.status(404).send(err): res.status(200).send(response)
   })
 })

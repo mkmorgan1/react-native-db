@@ -11,8 +11,8 @@ db.once('open', () => {
 });
 
 export const user = {
-  getOne: (username, done) => {
-    User.find({username: username}, (err, res) => {
+  getOne: (data, done) => {
+    User.find(data, (err, res) => {
       err ? done(err): done(null, res);
     });
   },
