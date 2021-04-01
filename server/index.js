@@ -1,7 +1,7 @@
 import express from 'express';
 const app = express();
 const PORT = 8080;
-
+import bcrypt from 'bcrypt';
 import { user } from '../database/index'
 
 app.use(express.urlencoded());
@@ -13,14 +13,21 @@ app.get('/allUsers', (req, res) => {
   })
 })
 
+app.get('/check', (req, res) => {
+  user.getOne(req.query, (err, response) => {
+    err ? res.status(404).send(err): res.status(200).send([response.length])
+  })
+})
+
 app.get('/user', (req, res) => {
-  console.log(req.query);
   user.getOne(req.query, (err, response) => {
     err ? res.status(404).send(err): res.status(200).send(response)
   })
 })
 
-app.post('/user', (req, res) => {
+app.post('/user', async (req, res) => {
+  const password = await bcrypt.hash(req.body.password, 10);
+  req.body.password = password;
   user.create(req.body, (err, response) => {
     err ? res.status(404).send(err): res.status(200).send(response)
   })
