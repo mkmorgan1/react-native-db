@@ -1,2 +1,16 @@
 # react-native-db
-a database server fo a react native app
+a database server for a react native app
+
+## Start Dev
+
+```bash
+  
+  npm run dev
+
+```
+
+```bash
+
+  npm start
+
+```
